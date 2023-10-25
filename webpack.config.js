@@ -2,9 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.ts',
+    entry: './src/index.js',
     output: {
-        filename: 'bundle.js',
+        filename: '[hush].bundle.js',
         path: path.resolve(__dirname, 'public'),
         clean: true,  
     },
@@ -19,7 +19,6 @@ module.exports = {
         // 瀏覽器可取得歷史紀錄，返回上一頁不會跳出 404
         historyApiFallback: true, 
     },
-    devtool: 'inline-source-map',
     module: {
         rules: [
         {
@@ -39,20 +38,7 @@ module.exports = {
                 presets: ['@babel/preset-env', "@babel/preset-react"],
               }
             }
-          },
-          {
-            test: /\.js$/,
-            enforce: "pre",
-            use: ["source-map-loader"],
-          },
-          {
-            test: /\.tsx?$/,
-            use: 'ts-loader',
-            exclude: /node_modules/,
-          },
+          }
         ],
-    },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
     },
 };
